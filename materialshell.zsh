@@ -8,9 +8,9 @@ eval white=$fg[white]
 eval grey=$fg[grey]
 
 PROMPT='${_current_dir}$(git_prompt_info)
-%{$white%}>%{$reset_color%} '
+%{$white%}$(_vi_status)%{$reset_color%} '
 PROMPT2='%{$grey%}◀%{$reset_color%} '
-RPROMPT='$(_vi_status)%{$(echotc UP 1)%}$(git_remote_status) $(git_prompt_short_sha) ${_return_status} %{$white%}%T%{$(echotc DO 1)%}%{$reset_color%}'
+RPROMPT='%{$(echotc UP 1)%}$(git_remote_status) $(git_prompt_short_sha) ${_return_status} %{$white%}%T%{$(echotc DO 1)%}%{$reset_color%}'
 
 local _current_dir="%{$green%}%2~%{$reset_color%} "
 local _return_status="%{$red%}%(?..×)%{$reset_color%}"
@@ -20,8 +20,10 @@ function _user_host() {
 }
 
 function _vi_status() {
-  if {echo $fpath | grep -q "plugins/vi-mode"}; then
-    echo "$(vi_mode_prompt_info)"
+  if [[ $ZVM_MODE == i ]]; then
+    echo '>'
+  else
+    echo '<'
   fi
 }
 
