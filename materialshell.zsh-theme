@@ -10,7 +10,7 @@ eval grey=$fg[grey]
 PROMPT='${_current_dir}$(git_prompt_info)
 %{$white%}$(_vi_status)%{$reset_color%} '
 PROMPT2='%{$grey%}◀%{$reset_color%} '
-RPROMPT='%{$(echotc UP 1)%}$(git_remote_status) $(pyenv version-name) $(git_prompt_short_sha) ${_return_status} %{$white%}%T%{$(echotc DO 1)%}%{$reset_color%}'
+RPROMPT='%{$(echotc UP 1)%}$(git_remote_status) $(git_prompt_short_sha) ${_return_status} %{$white%}%T%{$(echotc DO 1)%}%{$reset_color%}'
 
 local _current_dir="%{$green%}%2~%{$reset_color%} "
 local _return_status="%{$red%}%(?..×)%{$reset_color%}"
